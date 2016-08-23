@@ -17,17 +17,17 @@ gulp.task('vendors', function() {
     .require(dependencies)
     .bundle()
     .pipe(source('vendor.bundle.js'))
-    .pipe(gulp.dest(__dirname + '/src/app/libs'))
+    .pipe(gulp.dest(__dirname + '/src/scripts/libs'))
 });
 
 // browserify compile app scripts
 gulp.task('app', function() {
-  return browserify()
+  return browserify('src/app/app.js')
     .external(dependencies)
     .bundle()
     .pipe(source('app.bundle.js'))
     .pipe(maps.write('./'))
-    .pipe(gulp.dest(__dirname + '/src/app'))
+    .pipe(gulp.dest(__dirname + '/src/scripts'))
 });
 
 // compile css from sass

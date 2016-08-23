@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pokemon">
+<head>
+  <meta charset="utf-8" />
+  <title>Pokemon: Search and Discover</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <link href="./styles/css/app.css" rel="stylesheet" />
+</head>
+
+<body>
+  <h1>Pokémon: Search and Discover</h1>
+  <div ng-controller="findPokemonCtrl">
+    <input ng-model="pokemonName" type="text" placeholder="Enter a Pokémon name..." />
+    <button ng-click="getPokemon()" id="searchBtn">Go!</button>
+  </div>
+  <script src="./scripts/libs/vendor.bundle.js"></script>
+  <script src="./scripts/app.bundle.js"></script>
+</body>
+</html>
