@@ -17,11 +17,16 @@ var controllers = angular.module('pokemon.controllers', []);
 
 controllers.controller('findPokemonCtrl', function($scope, pokemonFactory) {
 
+  var successResponse = function(response) {
+    console.log(response);
+  }
+
+  var errorResponse = function(response) {
+    console.log(response);
+  }
   $scope.getPokemon = function() {
     pokemonFactory.getPokemonData($scope.pokemonName)
-      .then(function(response) {
-        console.log(response);
-      });
+      .then(successResponse, errorResponse);
   }
 
 });
@@ -40,7 +45,7 @@ services.factory('pokemonFactory', function($http) {
 
   return {
     getPokemonData: function(pokemonName) {
-      return $http.get('http://pokeapi.co/api/v2/pokemon/' + pokemonName);
+      return $http.get('http://pokeapi.co/api/v2/pkemon/' + pokemonName);
     }
   }
 

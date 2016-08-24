@@ -5,11 +5,19 @@ var controllers = angular.module('pokemon.controllers', []);
 
 controllers.controller('findPokemonCtrl', function($scope, pokemonFactory) {
 
+  var successResponse = function(response) {
+    console.log(response);
+  }
+
+  var errorResponse = function(response) {
+    if(response.status === 400) {
+      badRequest();
+    } else if()
+  }
+
   $scope.getPokemon = function() {
     pokemonFactory.getPokemonData($scope.pokemonName)
-      .then(function(response) {
-        console.log(response);
-      });
+      .then(successResponse, errorResponse);
   }
 
 });
