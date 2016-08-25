@@ -6,13 +6,12 @@ var controllers = angular.module('pokemon.controllers', []);
 controllers.controller('findPokemonCtrl', function($scope, pokemonFactory) {
 
   var successResponse = function(response) {
-    console.log(response);
+    console.log(response.data);
+    $scope.pokemon = response.data;
   }
 
   var errorResponse = function(response) {
-    if(response.status === 400) {
-      badRequest();
-    } else if()
+    $scope.error = response.data;
   }
 
   $scope.getPokemon = function() {

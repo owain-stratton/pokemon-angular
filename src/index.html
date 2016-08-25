@@ -13,7 +13,18 @@
   <div ng-controller="findPokemonCtrl">
     <input ng-model="pokemonName" type="text" placeholder="Enter a Pokémon name..." />
     <button ng-click="getPokemon()" id="searchBtn">Go!</button>
+    <!-- <div>
+      <h1>{{ pokemon.name }}</h1>
+      <img ng-src="{{ pokemon.sprites.front_default }}" alt="{{ pokemon.name }}" />
+
+    </div> -->
+    <div pokemon-directive>
+
+    </div>
+
   </div>
+
+
   <script src="./scripts/libs/vendor.bundle.js"></script>
   <script src="./scripts/app.bundle.js"></script>
 </body>

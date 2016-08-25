@@ -3,7 +3,7 @@
 var angular   = require('angular');
 
 
-var app = angular.module('pokemon', ['pokemon.controllers', 'pokemon.services']);
+var app = angular.module('pokemon', ['pokemon.controllers', 'pokemon.services', 'pokemon.directives']);
 
 require('./controllers/mainController.js');
 require('./directives/mainDirective.js');
@@ -18,12 +18,14 @@ var controllers = angular.module('pokemon.controllers', []);
 controllers.controller('findPokemonCtrl', function($scope, pokemonFactory) {
 
   var successResponse = function(response) {
-    console.log(response);
+    console.log(response.data);
+    $scope.pokemon = response.data;
   }
 
   var errorResponse = function(response) {
-    console.log(response);
+    $scope.error = response.data;
   }
+
   $scope.getPokemon = function() {
     pokemonFactory.getPokemonData($scope.pokemonName)
       .then(successResponse, errorResponse);
@@ -35,6 +37,22 @@ controllers.controller('findPokemonCtrl', function($scope, pokemonFactory) {
 'use strict';
 var angular = require('angular');
 
+var directives = angular.module('pokemon.directives', []);
+
+directives.directive('error400', function() {
+  return {
+    controller: findPokemonCtrl,
+    templateURL: '../../views/error400.html'
+  }
+});
+
+directives.directive('pokemonDirective', function(findPokemonCtrl) {
+  return {
+    controller: findPokemonCtrl,
+    templateURL: '../../views/pokemon.html'
+  }
+});
+
 },{"angular":"angular"}],4:[function(require,module,exports){
 'use strict';
 var angular = require('angular');
@@ -45,7 +63,7 @@ services.factory('pokemonFactory', function($http) {
 
   return {
     getPokemonData: function(pokemonName) {
-      return $http.get('http://pokeapi.co/api/v2/pkemon/' + pokemonName);
+      return $http.get('http://pokeapi.co/api/v2/pokemon/' + pokemonName);
     }
   }
 
